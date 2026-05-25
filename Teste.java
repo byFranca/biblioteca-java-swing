@@ -16,7 +16,7 @@ public class Teste {
         Teclado.close();
     }
 
-    public static void mostrarMenu(ArrayList<Livro> livros ,Scanner Teclado) {
+    public static void mostrarMenu(ArrayList<Livro> livros, Scanner Teclado) {
         int opc;
         do {
             System.out.println("==== MENU DE OPERAÇÕES ====");
@@ -28,26 +28,25 @@ public class Teste {
             opc = Teclado.nextInt();
             switch (opc) {
                 case 1:
-                    //metodo para mostrar livros
-                    System.out.println("1");
+                    mostrarLivros(livros);
                     break;
-            
+
                 case 2:
-                    //metodo para cadastrar um livro
+                    // metodo para cadastrar um livro
                     System.out.println("2");
                     break;
-                
+
                 case 3:
-                    //metodo para editar um livro ja existente
+                    // metodo para editar um livro ja existente
                     System.out.println("3");
                     break;
-                
+
                 default:
                     System.out.println("opção invalida, escolha algo válido!!");
                     break;
             }
 
-        } while (opc !=0 );
+        } while (opc != 0);
     }
 
     public static Livro escolherLivro(ArrayList<Livro> livros, Scanner Teclado) {
@@ -55,7 +54,7 @@ public class Teste {
         int opc;
         do {
             for (int i = 0; i < livros.size(); i++) {
-                System.out.println(i + 1 + " " + livros.get(i).nome);
+                System.out.println((i + 1) + " " + livros.get(i).nome);
             }
             opc = Teclado.nextInt();
             if (opc > 0 && opc <= livros.size()) {
@@ -64,6 +63,13 @@ public class Teste {
                 System.out.println("Opção inválida.");
             }
         } while (true);
+    }
+
+    public static void mostrarLivros(ArrayList<Livro> livros) {
+        for (int i = 0; i < livros.size(); i++) {
+            Livro l = livros.get(i);
+            System.out.println((i + 1) + " - " + l.nome + " | " + l.nomeAutor + " | " + l.genero);
+        }
     }
 
 }
