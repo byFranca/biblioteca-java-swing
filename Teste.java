@@ -11,22 +11,59 @@ public class Teste {
         livros.add(new Livro("livro 3", "autor 1", 13, 180, "drama"));
         livros.add(new Livro("livro 4", "autor 3", 60, 120, "terror"));
 
-        Livro livroEscolhido = escolherLivro(livros, Teclado);
-
-        System.out.println(livroEscolhido.numeroPaginas);
+        mostrarMenu(livros, Teclado);
 
         Teclado.close();
     }
 
-    public static Livro escolherLivro(ArrayList<Livro> livros, Scanner Teclado) {
+    public static void mostrarMenu(ArrayList<Livro> livros ,Scanner Teclado) {
         int opc;
+        do {
+            System.out.println("==== MENU DE OPERAÇÕES ====");
+            System.out.println("1 - Mostrar Livros Cadastrados");
+            System.out.println("2 - Cadastrar Livro");
+            System.out.println("3 - Editar Livro Cadastrado");
+            System.out.println("0 - Sair");
 
-        for (int i = 0; i < livros.size(); i++) {
-            System.out.println(i + 1 + " " + livros.get(i).nome);
+            opc = Teclado.nextInt();
+            switch (opc) {
+                case 1:
+                    //metodo para mostrar livros
+                    System.out.println("1");
+                    break;
+            
+                case 2:
+                    //metodo para cadastrar um livro
+                    System.out.println("2");
+                    break;
+                
+                case 3:
+                    //metodo para editar um livro ja existente
+                    System.out.println("3");
+                    break;
+                
+                default:
+                    System.out.println("opção invalida, escolha algo válido!!");
+                    break;
+            }
 
-        }
-        opc = Teclado.nextInt();
-        return livros.get(opc-1);
+        } while (opc !=0 );
+    }
+
+    public static Livro escolherLivro(ArrayList<Livro> livros, Scanner Teclado) {
+        // Essa é o medoto para escolher um livro em especifico, para quando precisar
+        int opc;
+        do {
+            for (int i = 0; i < livros.size(); i++) {
+                System.out.println(i + 1 + " " + livros.get(i).nome);
+            }
+            opc = Teclado.nextInt();
+            if (opc > 0 && opc <= livros.size()) {
+                return livros.get(opc - 1);
+            } else {
+                System.out.println("Opção inválida.");
+            }
+        } while (true);
     }
 
 }
