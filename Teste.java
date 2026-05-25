@@ -6,10 +6,10 @@ public class Teste {
         Scanner Teclado = new Scanner(System.in);
         ArrayList<Livro> livros = new ArrayList<>();
 
-        livros.add(new Livro("livro 1", "autor 1", 10, 200, "comedia"));
-        livros.add(new Livro("livro 2", "autor 2", 15, 150, "romance"));
-        livros.add(new Livro("livro 3", "autor 1", 13, 180, "drama"));
-        livros.add(new Livro("livro 4", "autor 3", 60, 120, "terror"));
+        livros.add(new Livro("Diario de um banana", "autor 1", 10, 200, "comedia"));
+        livros.add(new Livro("A culpa é das estrelas", "autor 2", 15, 150, "romance"));
+        livros.add(new Livro("Romeu e Julieta", "autor 1", 13, 180, "drama"));
+        livros.add(new Livro("Ordem paranormal", "autor 3", 60, 120, "terror"));
 
         mostrarMenu(livros, Teclado);
 
@@ -32,8 +32,7 @@ public class Teste {
                     break;
 
                 case 2:
-                    // metodo para cadastrar um livro
-                    System.out.println("2");
+                    criarLivro(livros, Teclado);
                     break;
 
                 case 3:
@@ -69,6 +68,33 @@ public class Teste {
         for (int i = 0; i < livros.size(); i++) {
             Livro l = livros.get(i);
             System.out.println((i + 1) + " - " + l.nome + " | " + l.nomeAutor + " | " + l.genero);
+        }
+    }
+
+    public static void criarLivro(ArrayList<Livro> livros, Scanner Teclado) {
+        try {
+            Teclado.nextLine(); // limpa o buffer
+            System.out.println("Digite o nome do novo livro: ");
+            String novoNome = Teclado.nextLine();
+
+            System.out.println("Digite o nome do autor: ");
+            String novoAutor = Teclado.nextLine();
+
+            System.out.println("Digite o preço do novo livro: ");
+            double novoPreco = Teclado.nextDouble();
+
+            SSystem.out.println("Digite o numero de páginas: ");
+            int novoNPaginas = Teclado.nextInt();
+
+            Teclado.nextLine();
+            System.out.println("Digite o genero do novo livro: ");
+            String novoGenero = Teclado.nextLine();
+
+            livros.add(new Livro(novoNome, novoAutor, novoPreco, novoNPaginas, novoGenero));
+            System.out.println("O livro " + novoNome + " foi cadastrado com sucesso!");
+
+        } catch (Exception e) {
+            System.out.println("Erro! Digite um número válido onde for pedido.");
         }
     }
 
