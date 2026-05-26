@@ -19,6 +19,8 @@ public class Teste {
         int opc;
         boolean rodando = true; 
         do {
+            System.out.println();
+            System.out.println();
             System.out.println("==== MENU DE OPERAÇÕES ====");
             System.out.println("1 - Mostrar Livros Cadastrados");
             System.out.println("2 - Cadastrar Livro");
@@ -40,8 +42,7 @@ public class Teste {
                     break;
 
                 case 3:
-                    // metodo para editar um livro ja existente
-                    System.out.println("3");
+                    editarLivro(livros, Teclado);
                     break;
 
                 default:
@@ -56,9 +57,7 @@ public class Teste {
         // Essa é o medoto para escolher um livro em especifico, para quando precisar
         int opc;
         do {
-            for (int i = 0; i < livros.size(); i++) {
-                System.out.println((i + 1) + " " + livros.get(i).nome);
-            }
+            mostrarLivros(livros);
             opc = Teclado.nextInt();
             try{
                 return livros.get(opc - 1);
@@ -69,6 +68,8 @@ public class Teste {
     }
 
     public static void mostrarLivros(ArrayList<Livro> livros) {
+        System.out.println();
+        System.out.println();
         for (int i = 0; i < livros.size(); i++) {
             Livro l = livros.get(i);
             System.out.println((i + 1) + " - " + l.nome + " | " + l.nomeAutor + " | " + l.genero);
@@ -76,6 +77,8 @@ public class Teste {
     }
 
     public static void criarLivro(ArrayList<Livro> livros, Scanner Teclado) {
+        System.out.println();
+        System.out.println();
         Teclado.nextLine();
         System.out.println("Digite o nome do novo livro: ");
         String novoNome = Teclado.nextLine();
@@ -97,10 +100,43 @@ public class Teste {
             int novoNPaginas = Integer.parseInt(paginasStr);
 
             livros.add(new Livro(novoNome, novoAutor, novoPreco, novoNPaginas, novoGenero));
+            System.out.println();
             System.out.println("O livro '" + novoNome + "' foi cadastrado com sucesso!");
 
         } catch (Exception e) {
             System.out.println("Erro! Digite um número válido onde for pedido.");
+        }
+    }
+
+    public static void editarLivro(ArrayList<Livro> livros, Scanner Teclado){
+        Livro l = escolherLivro(livros, Teclado);
+        System.out.println();
+        System.out.println();
+        Teclado.nextLine();
+        System.out.println("Digite o nome do novo livro: ");
+        String editNome = Teclado.nextLine();
+
+        System.out.println("Digite o nome do autor: ");
+        String editAutor = Teclado.nextLine();
+
+        System.out.println("Digite o preço do novo livro: ");
+        String editPreco = Teclado.nextLine();
+
+        System.out.println("Digite o numero de páginas: ");
+        String editPaginas = Teclado.nextLine();
+
+        System.out.println("Digite o genero do novo livro: ");
+        String editGenero = Teclado.nextLine();
+
+        try{
+            l.nome = editNome;
+            l.nomeAutor = editAutor;
+            l.preco = Double.parseDouble(editPreco);
+            l.numeroPaginas = Integer.parseInt(editPaginas);
+            l.genero = editGenero;
+        }catch(Exception e){
+            System.out.println();
+            System.out.println("Dados inseridos de forma incorreta!!");
         }
     }
 
@@ -121,7 +157,5 @@ class Livro {
         this.genero = genero;
 
     }
-
-
 
 }
