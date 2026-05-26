@@ -16,8 +16,8 @@ public class Teste {
     }
 
     public static void mostrarMenu(ArrayList<Livro> livros, Scanner Teclado) {
-        int opc;
-        boolean rodando = true; 
+        String opc;
+        boolean rodando = true;
         do {
             System.out.println();
             System.out.println();
@@ -27,39 +27,42 @@ public class Teste {
             System.out.println("3 - Editar Livro Cadastrado");
             System.out.println("0 - Sair");
 
-            opc = Teclado.nextInt();
+            opc = Teclado.nextLine();
+
+                
             switch (opc) {
-                case 0:
-                        System.out.println("Obrigado por usar o meu sistema!!");
-                        rodando = false;
+                case "0":
+                    System.out.println("Obrigado por usar o meu sistema!!");
+                    rodando = false;
                     break;
-                case 1:
+                case "1":
                     mostrarLivros(livros);
                     break;
 
-                case 2:
+                case "2":
                     criarLivro(livros, Teclado);
                     break;
 
-                case 3:
+                case "3":
                     editarLivro(livros, Teclado);
                     break;
 
                 default:
-                    System.out.println("opção invalida, escolha algo válido!!");
+                    System.out.println("Insira uma das opções do menu");
                     break;
             }
 
-        } while (rodando);
+            }while (rodando);
     }
 
     public static Livro escolherLivro(ArrayList<Livro> livros, Scanner Teclado) {
         // Essa é o medoto para escolher um livro em especifico, para quando precisar
-        int opc;
+        String opcStr;
         do {
             mostrarLivros(livros);
-            opc = Teclado.nextInt();
+            opcStr = Teclado.nextLine();
             try{
+                int opc = Integer.parseInt(opcStr);
                 return livros.get(opc - 1);
             }catch(Exception e){
                 System.out.println("Opção inválida.");
@@ -79,7 +82,6 @@ public class Teste {
     public static void criarLivro(ArrayList<Livro> livros, Scanner Teclado) {
         System.out.println();
         System.out.println();
-        Teclado.nextLine();
         System.out.println("Digite o nome do novo livro: ");
         String novoNome = Teclado.nextLine();
 
@@ -129,10 +131,10 @@ public class Teste {
         String editGenero = Teclado.nextLine();
 
         try{
-            l.nome = editNome;
-            l.nomeAutor = editAutor;
             l.preco = Double.parseDouble(editPreco);
             l.numeroPaginas = Integer.parseInt(editPaginas);
+            l.nome = editNome;
+            l.nomeAutor = editAutor;
             l.genero = editGenero;
         }catch(Exception e){
             System.out.println();
