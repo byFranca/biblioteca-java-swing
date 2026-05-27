@@ -5,17 +5,22 @@ public class Teste {
     public static void main(String[] args) {
         Scanner Teclado = new Scanner(System.in);
         ArrayList<Livro> livros = new ArrayList<>();
+        ArrayList<Leitor> leitores = new ArrayList<>();
 
         livros.add(new Livro("Diario de um banana", "autor 1", 10, 200, "comedia"));
         livros.add(new Livro("A culpa é das estrelas", "autor 2", 15, 150, "romance"));
         livros.add(new Livro("Romeu e Julieta", "autor 1", 13, 180, "drama"));
         livros.add(new Livro("Ordem paranormal", "autor 3", 60, 120, "terror"));
-        mostrarMenu(livros, Teclado);
+
+        leitores.add(new Leitor("Miguel", "(14)99999-9999", "1234"));
+        leitores.add(new Leitor("Aline", "(14)88888-8888", "1234"));
+
+        mostrarMenu(livros, leitores, Teclado);
 
         Teclado.close();
     }
 
-    public static void mostrarMenu(ArrayList<Livro> livros, Scanner Teclado) {
+    public static void mostrarMenu(ArrayList<Livro> livros, ArrayList<Leitor> leitores, Scanner Teclado) {
         String opc;
         boolean rodando = true;
         do {
@@ -25,11 +30,14 @@ public class Teste {
             System.out.println("1 - Mostrar Livros Cadastrados");
             System.out.println("2 - Cadastrar Livro");
             System.out.println("3 - Editar Livro Cadastrado");
+            System.out.println("4 - Remover Livro");
+            System.out.println("5 - Mostrar leitores");
+            System.out.println("6 - Criar leitor");
+            System.out.println("7 - Excluir leitor");
             System.out.println("0 - Sair");
 
             opc = Teclado.nextLine();
 
-                
             switch (opc) {
                 case "0":
                     System.out.println("Obrigado por usar o meu sistema!!");
@@ -47,24 +55,34 @@ public class Teste {
                     editarLivro(livros, Teclado);
                     break;
 
+                case "4":
+                    excluirLivro(livros, Teclado);
+                    break;
+
+                case "5":
+                    mostrarLeitores(leitores);
+                    break;
+
+                case "6":
+                    criarLeitor(leitores, Teclado);
+
                 default:
                     System.out.println("Insira uma das opções do menu");
                     break;
             }
 
-            }while (rodando);
+        } while (rodando);
     }
 
     public static Livro escolherLivro(ArrayList<Livro> livros, Scanner Teclado) {
-        // Essa é o medoto para escolher um livro em especifico, para quando precisar
         String opcStr;
         do {
             mostrarLivros(livros);
             opcStr = Teclado.nextLine();
-            try{
+            try {
                 int opc = Integer.parseInt(opcStr);
                 return livros.get(opc - 1);
-            }catch(Exception e){
+            } catch (Exception e) {
                 System.out.println("Opção inválida.");
             }
         } while (true);
@@ -72,10 +90,9 @@ public class Teste {
 
     public static void mostrarLivros(ArrayList<Livro> livros) {
         System.out.println();
-        System.out.println();
         for (int i = 0; i < livros.size(); i++) {
-            Livro l = livros.get(i);
-            System.out.println((i + 1) + " - " + l.nome + " | " + l.nomeAutor + " | " + l.genero);
+            System.out.print((i + 1) + " - ");
+            livros.get(i).exibir();
         }
     }
 
@@ -110,11 +127,10 @@ public class Teste {
         }
     }
 
-    public static void editarLivro(ArrayList<Livro> livros, Scanner Teclado){
+    public static void editarLivro(ArrayList<Livro> livros, Scanner Teclado) {
         Livro l = escolherLivro(livros, Teclado);
         System.out.println();
         System.out.println();
-        Teclado.nextLine();
         System.out.println("Digite o nome do novo livro: ");
         String editNome = Teclado.nextLine();
 
@@ -130,16 +146,45 @@ public class Teste {
         System.out.println("Digite o genero do novo livro: ");
         String editGenero = Teclado.nextLine();
 
-        try{
-            l.preco = Double.parseDouble(editPreco);
-            l.numeroPaginas = Integer.parseInt(editPaginas);
+        try {
+            double preco = Double.parseDouble(editPreco);
+            int numeroPaginas = Integer.parseInt(editPaginas);
+            l.preco = preco;
+            l.numeroPaginas = numeroPaginas;
             l.nome = editNome;
             l.nomeAutor = editAutor;
             l.genero = editGenero;
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println();
             System.out.println("Dados inseridos de forma incorreta!!");
         }
+    }
+
+    public static void excluirLivro(ArrayList<Livro> livros, Scanner teclado) {
+        Livro l = escolherLivro(livros, teclado);
+        System.out.println("O livro '" + l.nome + "' foi excluido");
+        livros.remove(l);
+
+    }
+
+    public static void mostrarLeitores(ArrayList<Leitor> leitores) {
+        for (int i = 0; i < leitores.size(); i++) {
+            leitores.get(i).exibir();
+        }
+    }
+
+    public static void criarLeitor(ArrayList<Leitor> leitores, Scanner Teclado) {
+        System.out.println("Digite o nome do novo leitor: ");
+        String novoNome = Teclado.nextLine();
+
+        System.out.println("Digite o telefone do novo leitor: ");
+        String novoTelefone = Teclado.nextLine();
+
+        System.out.println("Digite a senha do novo leitor: ");
+        String novaSenha = Teclado.nextLine();
+
+        leitores.add(new Leitor(novoNome, novoTelefone, novaSenha));
+        System.out.println("O leitor '" + novoNome + "' foi cadastrado com sucesso!");
     }
 
 }
@@ -148,7 +193,7 @@ class Livro {
     String nome;
     String nomeAutor;
     double preco;
-    int numeroPaginas; // pode ser que mais pra frente isso mude
+    int numeroPaginas;
     String genero;
 
     Livro(String nome, String nomeAutor, double preco, int numeroPaginas, String genero) {
@@ -157,7 +202,27 @@ class Livro {
         this.preco = preco;
         this.numeroPaginas = numeroPaginas;
         this.genero = genero;
+    }
 
+    public void exibir() {
+        System.out.println(nome + " | " + nomeAutor + " | " + genero);
+    }
+}
+
+class Leitor {
+    String nome;
+    String telefone;
+    String senha;
+    ArrayList<Livro> livrosFavoritos = new ArrayList<>();
+
+    Leitor(String nome, String telefone, String senha) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.senha = senha;
+    }
+
+    public void exibir() {
+        System.out.println(nome + " | " + telefone);
     }
 
 }
