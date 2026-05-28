@@ -65,6 +65,11 @@ public class Teste {
 
                 case "6":
                     criarLeitor(leitores, Teclado);
+                    break;
+
+                case "7":
+                    excluirLeitor(leitores, Teclado);
+                    break;
 
                 default:
                     System.out.println("Insira uma das opções do menu");
@@ -168,7 +173,9 @@ public class Teste {
     }
 
     public static void mostrarLeitores(ArrayList<Leitor> leitores) {
+        System.out.println();
         for (int i = 0; i < leitores.size(); i++) {
+            System.out.print((i + 1) + " - ");
             leitores.get(i).exibir();
         }
     }
@@ -185,6 +192,25 @@ public class Teste {
 
         leitores.add(new Leitor(novoNome, novoTelefone, novaSenha));
         System.out.println("O leitor '" + novoNome + "' foi cadastrado com sucesso!");
+    }
+
+    public static Leitor escolherLeitor(ArrayList<Leitor> leitores, Scanner Teclado) {
+        do {
+            mostrarLeitores(leitores);
+            String opcStr = Teclado.nextLine();
+            try {
+                int opc = Integer.parseInt(opcStr);
+                return leitores.get(opc - 1);
+            } catch (Exception e) {
+                System.out.println("Insira uma entrada válida");
+            }
+        } while (true);
+    }
+
+    public static void excluirLeitor(ArrayList<Leitor> leitores, Scanner Teclado) {
+        Leitor leitor = escolherLeitor(leitores, Teclado);
+        System.out.println("O leitor '" + leitor.nome + "'Foi excluido");
+        leitores.remove(leitor);
     }
 
 }
