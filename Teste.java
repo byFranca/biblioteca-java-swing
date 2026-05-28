@@ -94,6 +94,10 @@ public class Teste {
     }
 
     public static void mostrarLivros(ArrayList<Livro> livros) {
+        if (livros.size() == 0) {
+            System.out.println("Nenhum livro cadastrado!");
+            return;
+        }
         System.out.println();
         for (int i = 0; i < livros.size(); i++) {
             System.out.print((i + 1) + " - ");
@@ -133,6 +137,11 @@ public class Teste {
     }
 
     public static void editarLivro(ArrayList<Livro> livros, Scanner Teclado) {
+        if (livros.size() == 0) {
+            System.out.println("Nenhum livro cadastrado!");
+            return;
+        }
+
         Livro l = escolherLivro(livros, Teclado);
         System.out.println();
         System.out.println();
@@ -166,6 +175,10 @@ public class Teste {
     }
 
     public static void excluirLivro(ArrayList<Livro> livros, Scanner teclado) {
+        if (livros.size() == 0) {
+            System.out.println("Nenhum livro cadastrado!");
+            return;
+        }
         Livro l = escolherLivro(livros, teclado);
         System.out.println("O livro '" + l.nome + "' foi excluido");
         livros.remove(l);
@@ -174,6 +187,10 @@ public class Teste {
 
     public static void mostrarLeitores(ArrayList<Leitor> leitores) {
         System.out.println();
+        if (leitores.size() == 0) {
+            System.out.println("Nenhum leitor cadastrado!");
+            return;
+        }
         for (int i = 0; i < leitores.size(); i++) {
             System.out.print((i + 1) + " - ");
             leitores.get(i).exibir();
@@ -208,6 +225,10 @@ public class Teste {
     }
 
     public static void excluirLeitor(ArrayList<Leitor> leitores, Scanner Teclado) {
+        if (leitores.size() == 0) {
+            System.out.println("Nenhum Leitor cadastrado");
+            return;
+        }
         Leitor leitor = escolherLeitor(leitores, Teclado);
         System.out.println("O leitor '" + leitor.nome + "'Foi excluido");
         leitores.remove(leitor);
