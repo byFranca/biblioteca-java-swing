@@ -15,12 +15,68 @@ public class Teste {
         leitores.add(new Leitor("Miguel", "(14)99999-9999", "1234"));
         leitores.add(new Leitor("Aline", "(14)88888-8888", "1234"));
 
-        mostrarMenu(livros, leitores, Teclado);
+        login(livros, leitores, Teclado);
 
         Teclado.close();
     }
 
-    public static void mostrarMenu(ArrayList<Livro> livros, ArrayList<Leitor> leitores, Scanner Teclado) {
+    public static void login(ArrayList<Livro> livros, ArrayList<Leitor> leitores, Scanner Teclado) {
+        String opc;
+        boolean rodando = true;
+        do {
+            System.out.println();
+            System.out.println("==== BIBLIOTECA ====");
+            System.out.println("1 - Entrar como Admin");
+            System.out.println("2 - Entrar como Leitor");
+            System.out.println("0 - Sair");
+
+            opc = Teclado.nextLine();
+
+            switch (opc) {
+                case "1":
+                    menuAdmin(livros, leitores, Teclado);
+                    break;
+
+                case "2":
+                    Leitor leitorLogado = fazerLogin(leitores, Teclado);
+                    if (leitorLogado != null) {
+                        //menuLeitor(livros, leitorLogado, Teclado);
+                    }
+                    break;
+
+                case "0":
+                    System.out.println("Obrigado por usar o meu sistema!!");
+                    rodando = false;
+                    break;
+
+                default:
+                    System.out.println("Insira uma das opções do menu");
+                    break;
+            }
+        } while (rodando);
+
+    }
+
+    public static Leitor fazerLogin(ArrayList<Leitor> leitores, Scanner Teclado) {
+        System.out.println();
+        System.out.println("Digite seu nome: ");
+        String nome = Teclado.nextLine();
+
+        System.out.println("Digite sua senha: ");
+        String senha = Teclado.nextLine();
+
+        for (int i = 0; i < leitores.size(); i++) {
+            if (leitores.get(i).nome.equals(nome) && leitores.get(i).senha.equals(senha)) {
+                System.out.println("Bem vindo, " + nome + "!");
+                return leitores.get(i);
+            }
+        }
+
+        System.out.println("Nome ou senha incorretos!");
+        return null;
+    }
+
+    public static void menuAdmin(ArrayList<Livro> livros, ArrayList<Leitor> leitores, Scanner Teclado) {
         String opc;
         boolean rodando = true;
         do {
@@ -40,7 +96,6 @@ public class Teste {
 
             switch (opc) {
                 case "0":
-                    System.out.println("Obrigado por usar o meu sistema!!");
                     rodando = false;
                     break;
                 case "1":
