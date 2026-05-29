@@ -40,7 +40,7 @@ public class Teste {
                 case "2":
                     Leitor leitorLogado = fazerLogin(leitores, Teclado);
                     if (leitorLogado != null) {
-                        //menuLeitor(livros, leitorLogado, Teclado);
+                        menuLeitor(livros, leitorLogado, Teclado);
                     }
                     break;
 
@@ -128,6 +128,42 @@ public class Teste {
 
                 default:
                     System.out.println("Insira uma das opções do menu");
+                    break;
+            }
+
+        } while (rodando);
+    }
+
+    public static void menuLeitor(ArrayList<Livro> livros, Leitor leitorLogado, Scanner Teclado) {
+
+        boolean rodando = true;
+        String opc;
+
+        do {
+            System.out.println();
+            System.out.println();
+            System.out.println("==== MENU DE OPERAÇÕES DO LEITOR ====");
+            System.out.println("1 - Ver Catalogo De Livros");
+            System.out.println("6 - Mostrar Meu Catalogo De Favoritos");
+            System.out.println("3 - Adicionar Livro ao Meu Catalogo De Favoritos");
+            System.out.println("7 - Excluir Minha Conta");
+            System.out.println("0 - Sair");
+
+            opc = Teclado.nextLine();
+            switch (opc) {
+                case "1":
+                    mostrarLivros(livros);
+                    break;
+                case "2":
+
+                    break;
+
+                case "0":
+                    rodando = false;
+                    break;
+                
+                default:
+                    System.out.println("Escolha uma opção válida!");
                     break;
             }
 
