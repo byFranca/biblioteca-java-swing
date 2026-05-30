@@ -158,10 +158,15 @@ public class Teste {
                     leitorLogado.mostrarCatalogo();
                     break;
 
+                case "3":
+                    Livro l = escolherLivro(livros, Teclado);
+                    leitorLogado.adicionarFavorito(l);
+                    break;
+
                 case "0":
                     rodando = false;
                     break;
-                
+
                 default:
                     System.out.println("Escolha uma opção válida!");
                     break;
@@ -325,8 +330,6 @@ public class Teste {
         leitores.remove(leitor);
     }
 
-
-
 }
 
 class Livro {
@@ -365,16 +368,28 @@ class Leitor {
         System.out.println(nome + " | " + telefone);
     }
 
-    public void mostrarCatalogo(){
+    public void mostrarCatalogo() {
         System.out.println();
-        if(livrosFavoritos.size() == 0){
+        if (livrosFavoritos.size() == 0) {
             System.out.println("Voce nao tem livros favoritos cadastrados");
             return;
         }
         System.out.println("==== LIVROS FAVORITOS ====");
-        for(int i = 0; i<livrosFavoritos.size(); i++){
+        for (int i = 0; i < livrosFavoritos.size(); i++) {
             livrosFavoritos.get(i).exibir();
         }
+
+    }
+
+    public void adicionarFavorito(Livro l) {
+        for (Livro livro : livrosFavoritos) {
+            if (l == livro) {
+                System.out.println("Este livro ja esta no seu catalogo!!");
+                return;
+            }
+        }
+        livrosFavoritos.add(l);
+        System.out.println("O livro '" + l.nome + "' foi adicionado ao seu catalogo de favoritos, " + nome + "!!");
 
     }
 
