@@ -144,9 +144,9 @@ public class Teste {
             System.out.println();
             System.out.println("==== MENU DE OPERAÇÕES DO LEITOR ====");
             System.out.println("1 - Ver Catalogo De Livros");
-            System.out.println("6 - Mostrar Meu Catalogo De Favoritos");
+            System.out.println("2 - Mostrar Meu Catalogo De Favoritos");
             System.out.println("3 - Adicionar Livro ao Meu Catalogo De Favoritos");
-            System.out.println("7 - Excluir Minha Conta");
+            System.out.println("4 - Excluir Minha Conta");
             System.out.println("0 - Sair");
 
             opc = Teclado.nextLine();
@@ -155,7 +155,7 @@ public class Teste {
                     mostrarLivros(livros);
                     break;
                 case "2":
-
+                    leitorLogado.mostrarCatalogo();
                     break;
 
                 case "0":
@@ -325,6 +325,8 @@ public class Teste {
         leitores.remove(leitor);
     }
 
+
+
 }
 
 class Livro {
@@ -361,6 +363,19 @@ class Leitor {
 
     public void exibir() {
         System.out.println(nome + " | " + telefone);
+    }
+
+    public void mostrarCatalogo(){
+        System.out.println();
+        if(livrosFavoritos.size() == 0){
+            System.out.println("Voce nao tem livros favoritos cadastrados");
+            return;
+        }
+        System.out.println("==== LIVROS FAVORITOS ====");
+        for(int i = 0; i<livrosFavoritos.size(); i++){
+            livrosFavoritos.get(i).exibir();
+        }
+
     }
 
 }
