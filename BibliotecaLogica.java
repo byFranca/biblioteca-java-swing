@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Teste {
+public class BibliotecaLogica {
     public static void main(String[] args) {
         Scanner Teclado = new Scanner(System.in);
         ArrayList<Livro> livros = new ArrayList<>();
@@ -138,6 +138,7 @@ public class Teste {
 
         boolean rodando = true;
         String opc;
+        Livro l = null;
 
         do {
             System.out.println();
@@ -146,7 +147,9 @@ public class Teste {
             System.out.println("1 - Ver Catalogo De Livros");
             System.out.println("2 - Mostrar Meu Catalogo De Favoritos");
             System.out.println("3 - Adicionar Livro ao Meu Catalogo De Favoritos");
-            System.out.println("4 - Excluir Minha Conta");
+            System.out.println("4 - Remover Livro ao Meu Catalogo De Favoritos");
+            // System.out.println("5 - Excluir Minha Conta"); Se der ciragem eu faço depois
+            // kkkkk
             System.out.println("0 - Sair");
 
             opc = Teclado.nextLine();
@@ -159,8 +162,12 @@ public class Teste {
                     break;
 
                 case "3":
-                    Livro l = escolherLivro(livros, Teclado);
+                    l = escolherLivro(livros, Teclado);
                     leitorLogado.adicionarFavorito(l);
+                    break;
+
+                case "4":
+                    leitorLogado.removerFavorito(Teclado);
                     break;
 
                 case "0":
@@ -376,6 +383,7 @@ class Leitor {
         }
         System.out.println("==== LIVROS FAVORITOS ====");
         for (int i = 0; i < livrosFavoritos.size(); i++) {
+            System.out.print((i + 1) + " - ");
             livrosFavoritos.get(i).exibir();
         }
 
@@ -391,6 +399,29 @@ class Leitor {
         livrosFavoritos.add(l);
         System.out.println("O livro '" + l.nome + "' foi adicionado ao seu catalogo de favoritos, " + nome + "!!");
 
+    }
+
+    public Livro escolherLivroFavorito(Scanner Teclado) {
+        do {
+            mostrarCatalogo();
+            String opcStr = Teclado.nextLine();
+            try {
+                int opc = Integer.parseInt(opcStr);
+                return livrosFavoritos.get(opc - 1);
+            } catch (Exception e) {
+                System.out.println("Insira uma opção válida.");
+            }
+        } while (true);
+    }
+
+    public void removerFavorito(Scanner Teclado) {
+        if (livrosFavoritos.size() == 0) {
+            System.out.println("Voce nao tem livros favoritos cadastrados!");
+            return;
+        }
+        Livro l = escolherLivroFavorito(Teclado);
+        livrosFavoritos.remove(l);
+        System.out.println("O livro '" + l.nome + "' foi removido do seu catalogo, " + nome + "!!");
     }
 
 }
