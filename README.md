@@ -9,7 +9,7 @@ Sistema em **Java** para gerenciamento de uma biblioteca escolar. A proposta é 
 O sistema conta com dois perfis de acesso: o **Admin**, que tem controle total sobre o acervo e os leitores cadastrados, e o **Leitor**, que pode visualizar os livros disponíveis e montar sua própria lista de favoritos. O acesso é feito por uma tela de login com nome e senha.
 
 ## Etapas de desenvolvimento
-- [ ] Lógica em console
+- [X] Lógica em console
 - [ ] Interface com Java Swing
 
 ---
