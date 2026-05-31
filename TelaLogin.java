@@ -20,7 +20,6 @@ public class TelaLogin {
         painelLogin.add(campoNome);
         painelLogin.add(labelSenha);
         painelLogin.add(campoSenha);
-        painelLogin.add(new JLabel());
         painelLogin.add(botaoEntrar);
 
         frameLogin.add(painelLogin);
