@@ -30,8 +30,8 @@ public class TelaLogin {
             String senha = campoSenha.getText();
 
             if (nome.equals("admin") && senha.equals("1234")) {
-                // new TelaAdmin();
-                System.out.println("entrou como admin");
+                new TelaAdmin(livros, leitores);
+                frameLogin.dispose();
             } else {
                 Leitor leitorLogado = null;
                 for (int i = 0; i < leitores.size(); i++) {

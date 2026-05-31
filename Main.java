@@ -14,7 +14,7 @@ public class Main {
         leitores.add(new Leitor("Aline", "(14)88888-8888", "1234"));
 
 
-        new TelaLogin(livros, leitores);
+        new TelaAdmin(livros, leitores);//apenas para ir testando o menu do admin
     }
 
 
