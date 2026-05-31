@@ -1,3 +1,5 @@
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -6,10 +8,10 @@ public class TelaLogin {
         JFrame frameLogin = new JFrame();
         frameLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameLogin.setTitle("Tela De Login");
-        frameLogin.setSize(400, 300);
+        frameLogin.setSize(400, 150);
         frameLogin.setLocationRelativeTo(null);
 
-        JPanel painelLogin = new JPanel();
+        JPanel painelLogin = new JPanel(new GridLayout(2, 2, 10, 10));
         JLabel labelNome = new JLabel("Insira seu nome:");
         JLabel labelSenha = new JLabel("Insira sua senha:");
         JTextField campoNome = new JTextField(20);
@@ -20,9 +22,9 @@ public class TelaLogin {
         painelLogin.add(campoNome);
         painelLogin.add(labelSenha);
         painelLogin.add(campoSenha);
-        painelLogin.add(botaoEntrar);
 
         frameLogin.add(painelLogin);
+        frameLogin.add(botaoEntrar, BorderLayout.SOUTH);
         frameLogin.setVisible(true);
 
         botaoEntrar.addActionListener(e -> {

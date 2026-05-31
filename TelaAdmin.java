@@ -63,6 +63,10 @@ public class TelaAdmin {
         botaoCadastrar.addActionListener(e -> {
             new TelaCadastrar(livros, leitores, modeloTabela, modoAtual);
         });
+
+        botaoRemover.addActionListener(e -> {
+            removerIten(livros, leitores, modeloTabela, modoAtual, tabela);
+        });
     }
 
     public static void renderizarTabela(ArrayList<Livro> livros, ArrayList<Leitor> leitores,
@@ -84,6 +88,28 @@ public class TelaAdmin {
                 Leitor l = leitores.get(i);
                 modeloTabela.addRow(new Object[] { (i + 1), l.nome, l.telefone });
             }
+        }
+    }
+
+    public static void removerIten(ArrayList<Livro> livros, ArrayList<Leitor> leitores,
+            DefaultTableModel modeloTabela, String[] modoAtual, JTable tabela) {
+        int linha = tabela.getSelectedRow();
+        if (linha == -1) {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela para fazer essa opereação!!");
+            return;
+        }
+
+        int confirmacao = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir essa linha?");
+        if (confirmacao == JOptionPane.YES_OPTION) {
+            if (modoAtual[0].equals("Livro")) {
+                livros.remove(linha);
+            }
+            if (modoAtual[0].equals("Leitor")) {
+                leitores.remove(linha);
+            }
+            renderizarTabela(livros, leitores, modeloTabela, modoAtual);
+        }else{
+            return;
         }
     }
 }
