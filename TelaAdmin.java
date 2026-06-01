@@ -67,6 +67,10 @@ public class TelaAdmin {
         botaoRemover.addActionListener(e -> {
             removerIten(livros, leitores, modeloTabela, modoAtual, tabela);
         });
+
+        botaoEditar.addActionListener(e ->{
+            new TelaEditar(livros, leitores, modeloTabela, modoAtual, tabela);
+        });
     }
 
     public static void renderizarTabela(ArrayList<Livro> livros, ArrayList<Leitor> leitores,

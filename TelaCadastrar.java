@@ -57,14 +57,14 @@ public class TelaCadastrar {
                 }
 
                 try {
-                    String novoNome = campoNome.getText();
-                    String novoAutor = campoAutor.getText();
-                    double novoPreco = Double.parseDouble(campoPreco.getText());
-                    int novoNPagina = Integer.parseInt(campoPaginas.getText());
-                    String novoGenero = campoGenero.getText();
+                    String nome = campoNome.getText();
+                    String autor = campoAutor.getText();
+                    double preco = Double.parseDouble(campoPreco.getText());
+                    int pagina = Integer.parseInt(campoPaginas.getText());
+                    String genero = campoGenero.getText();
 
-                    livros.add(new Livro(novoNome, novoAutor, novoPreco, novoNPagina, novoGenero));
-                    JOptionPane.showMessageDialog(null, "O livro '" + novoNome + "' foi adicionado!");
+                    livros.add(new Livro(nome, autor, preco, pagina, genero));
+                    JOptionPane.showMessageDialog(null, "O livro '" + nome + "' foi adicionado!");
                     TelaAdmin.renderizarTabela(livros, leitores, modeloTabela, modoAtual);
                     frameCadastro.dispose();
 
@@ -114,12 +114,12 @@ public class TelaCadastrar {
                 }
 
                 try {
-                    String novoNome = campoNome.getText();
-                    String novoTelefone = campoTelefone.getText();
-                    String novaSenha = campoSenha.getText();
+                    String nome = campoNome.getText();
+                    String telefone = campoTelefone.getText();
+                    String senha = campoSenha.getText();
 
-                    leitores.add(new Leitor(novoNome, novoTelefone, novaSenha));
-                    JOptionPane.showMessageDialog(null, "O leitor '" + novoNome + "' foi adicionado!");
+                    leitores.add(new Leitor(nome, telefone, senha));
+                    JOptionPane.showMessageDialog(null, "O leitor '" + nome + "' foi adicionado!");
                     TelaAdmin.renderizarTabela(livros, leitores, modeloTabela, modoAtual);
                     frameCadastro.dispose();
 
