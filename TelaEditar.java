@@ -37,7 +37,6 @@ public class TelaEditar {
             JTextField campoGenero = new JTextField();
             JButton botaoEditar = new JButton("Salvar");
 
-            // Preenche os campos com os valores atuais
             Livro livroAtual = livros.get(linha);
             campoNome.setText(livroAtual.getNome());
             campoAutor.setText(livroAtual.getNomeAutor());
@@ -56,25 +55,43 @@ public class TelaEditar {
             frameEditar.setVisible(true);
 
             botaoEditar.addActionListener(e -> {
-                if (campoNome.getText().isEmpty() || campoAutor.getText().isEmpty() ||
-                        campoPreco.getText().isEmpty() || campoPaginas.getText().isEmpty() ||
-                        campoGenero.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+                // VALIDAÇÃO DE CAMPOS VAZIOS OU SÓ ESPAÇOS
+                if (campoNome.getText().trim().isEmpty() || campoAutor.getText().trim().isEmpty() ||
+                        campoPreco.getText().trim().isEmpty() || campoPaginas.getText().trim().isEmpty() ||
+                        campoGenero.getText().trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(frameEditar, "Preencha todos os campos!");
                     return;
                 }
+
                 try {
+                    double novoPreco = Double.parseDouble(campoPreco.getText().trim());
+                    int novoNPagina = Integer.parseInt(campoPaginas.getText().trim());
+
+                    // VALIDAÇÃO DE PREÇO NEGATIVO
+                    if (novoPreco < 0) {
+                        JOptionPane.showMessageDialog(frameEditar, "O preço não pode ser negativo!");
+                        return;
+                    }
+
+                    // VALIDAÇÃO DE PÁGINAS
+                    if (novoNPagina <= 0) {
+                        JOptionPane.showMessageDialog(frameEditar, "O número de páginas deve ser maior que zero!");
+                        return;
+                    }
+
                     Livro l = livros.get(linha);
-                    l.setNome(campoNome.getText());
-                    l.setNomeAutor(campoAutor.getText());
-                    l.setPreco(Double.parseDouble(campoPreco.getText()));
-                    l.setNumeroPaginas(Integer.parseInt(campoPaginas.getText()));
-                    l.setGenero(campoGenero.getText());
+                    l.setNome(campoNome.getText().trim());
+                    l.setNomeAutor(campoAutor.getText().trim());
+                    l.setPreco(novoPreco);
+                    l.setNumeroPaginas(novoNPagina);
+                    l.setGenero(campoGenero.getText().trim());
 
                     TelaAdmin.renderizarTabela(livros, leitores, modeloTabela, modoAtual);
                     frameEditar.dispose();
                     JOptionPane.showMessageDialog(null, "Livro editado com sucesso!");
-                } catch (Exception erro) {
-                    JOptionPane.showMessageDialog(null, "Preço e Páginas devem ser números!");
+
+                } catch (NumberFormatException erro) {
+                    JOptionPane.showMessageDialog(frameEditar, "Preço e Páginas devem ser números!");
                 }
             });
         }
@@ -105,7 +122,6 @@ public class TelaEditar {
             JPasswordField campoSenha = new JPasswordField(20);
             JButton botaoEditar = new JButton("Salvar");
 
-            // Preenche os campos com os valores atuais
             Leitor leitorAtual = leitores.get(linha);
             campoNome.setText(leitorAtual.getNome());
             campoTelefone.setText(leitorAtual.getTelefone());
@@ -120,23 +136,35 @@ public class TelaEditar {
             frameEditar.setVisible(true);
 
             botaoEditar.addActionListener(e -> {
-                if (campoNome.getText().isEmpty() || campoTelefone.getText().isEmpty()
-                        || new String(campoSenha.getPassword()).isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+                String senha = new String(campoSenha.getPassword());
+
+                // VALIDAÇÃO DE CAMPOS VAZIOS OU SÓ ESPAÇOS
+                if (campoNome.getText().trim().isEmpty() || campoTelefone.getText().trim().isEmpty()
+                        || senha.trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(frameEditar, "Preencha todos os campos!");
                     return;
                 }
-                try {
-                    Leitor l = leitores.get(linha);
-                    l.setNome(campoNome.getText());
-                    l.setTelefone(campoTelefone.getText());
-                    l.setSenha(new String(campoSenha.getPassword()));
 
-                    TelaAdmin.renderizarTabela(livros, leitores, modeloTabela, modoAtual);
-                    frameEditar.dispose();
-                    JOptionPane.showMessageDialog(null, "Leitor editado com sucesso!");
-                } catch (Exception erro) {
-                    JOptionPane.showMessageDialog(null, "Dados inseridos de forma incorreta!");
+                // VALIDAÇÃO DE TELEFONE
+                if (campoTelefone.getText().trim().length() < 10) {
+                    JOptionPane.showMessageDialog(frameEditar, "Telefone inválido! Digite pelo menos 10 caracteres. Ex: (14)99999-9999");
+                    return;
                 }
+
+                // VALIDAÇÃO DE SENHA
+                if (senha.length() < 4) {
+                    JOptionPane.showMessageDialog(frameEditar, "A senha deve ter pelo menos 4 caracteres!");
+                    return;
+                }
+
+                Leitor l = leitores.get(linha);
+                l.setNome(campoNome.getText().trim());
+                l.setTelefone(campoTelefone.getText().trim());
+                l.setSenha(senha);
+
+                TelaAdmin.renderizarTabela(livros, leitores, modeloTabela, modoAtual);
+                frameEditar.dispose();
+                JOptionPane.showMessageDialog(null, "Leitor editado com sucesso!");
             });
         }
     }
