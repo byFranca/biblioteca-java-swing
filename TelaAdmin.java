@@ -4,8 +4,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class TelaAdmin {
-    public TelaAdmin(ArrayList<Livro> livros, ArrayList<Leitor> leitores) {
-        String[] modoAtual = { "Livro" };
+    public TelaAdmin(ArrayList<Livro> livros, ArrayList<Leitor> leitores, String[] modoAtual) {
+        modoAtual[0] = "Livro";
 
         // Essa parte é o frame em si (a tela)
         JFrame frameAdmin = new JFrame();
@@ -25,6 +25,8 @@ public class TelaAdmin {
         menuleitor.add(itenLeitor);
         barraMenu.add(menuLivro);
         barraMenu.add(menuleitor);
+        JMenuItem itenSair = new JMenuItem("Sair");
+        barraMenu.add(itenSair);
         frameAdmin.setJMenuBar(barraMenu);
 
         // crio o modelo da tabela, adiciono o modelo a tabela e adiciono a tabela ao
@@ -68,8 +70,13 @@ public class TelaAdmin {
             removerIten(livros, leitores, modeloTabela, modoAtual, tabela);
         });
 
-        botaoEditar.addActionListener(e ->{
+        botaoEditar.addActionListener(e -> {
             new TelaEditar(livros, leitores, modeloTabela, modoAtual, tabela);
+        });
+
+        itenSair.addActionListener(e -> {
+            frameAdmin.dispose();
+            new TelaLogin(livros, leitores, modoAtual);
         });
     }
 
@@ -112,7 +119,7 @@ public class TelaAdmin {
                 leitores.remove(linha);
             }
             renderizarTabela(livros, leitores, modeloTabela, modoAtual);
-        }else{
+        } else {
             return;
         }
     }

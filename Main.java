@@ -4,6 +4,7 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Livro> livros = new ArrayList<>();
         ArrayList<Leitor> leitores = new ArrayList<>();
+        String[] modoAtual = {"Livro"};
 
         livros.add(new Livro("Diario de um banana", "autor 1", 10, 200, "comedia"));
         livros.add(new Livro("A culpa é das estrelas", "autor 2", 15, 150, "romance"));
@@ -14,7 +15,7 @@ public class Main {
         leitores.add(new Leitor("Aline", "(14)88888-8888", "1234"));
 
 
-        new TelaAdmin(livros, leitores);//apenas para ir testando o menu do admin
+        new TelaLogin(livros, leitores, modoAtual);//apenas para ir testando o menu do admin
     }
 
 

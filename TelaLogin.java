@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class TelaLogin {
-    public TelaLogin(ArrayList<Livro> livros, ArrayList<Leitor> leitores) {
+    public TelaLogin(ArrayList<Livro> livros, ArrayList<Leitor> leitores, String[] modoAtual) {
+        modoAtual[0] = "Livro";
         JFrame frameLogin = new JFrame();
         frameLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameLogin.setTitle("Tela De Login");
@@ -32,7 +33,7 @@ public class TelaLogin {
             String senha = campoSenha.getText();
 
             if (nome.equals("admin") && senha.equals("1234")) {
-                new TelaAdmin(livros, leitores);
+                new TelaAdmin(livros, leitores, modoAtual);
                 frameLogin.dispose();
             } else {
                 Leitor leitorLogado = null;
@@ -44,7 +45,7 @@ public class TelaLogin {
                 }
 
                 if (leitorLogado != null) {
-                    // new TelaLeitor();
+                    new TelaLeitor(livros, leitorLogado, modoAtual);
                     System.out.println("entrou como o leitor "+leitorLogado.nome);
                 } else {
                     JOptionPane.showMessageDialog(null, "Nome ou senha incorretos!");
