@@ -39,25 +39,40 @@ public class TelaCadastrar {
             frameCadastro.setVisible(true);
 
             botaoCadastrar.addActionListener(e -> {
-                if (campoNome.getText().isEmpty() || campoAutor.getText().isEmpty() ||
-                        campoPreco.getText().isEmpty() || campoPaginas.getText().isEmpty() ||
-                        campoGenero.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+                // VALIDAÇÃO DE CAMPOS VAZIOS OU SÓ ESPAÇOS
+                if (campoNome.getText().trim().isEmpty() || campoAutor.getText().trim().isEmpty() ||
+                        campoPreco.getText().trim().isEmpty() || campoPaginas.getText().trim().isEmpty() ||
+                        campoGenero.getText().trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(frameCadastro, "Preencha todos os campos!");
                     return;
                 }
+
                 try {
-                    String nome = campoNome.getText();
-                    String autor = campoAutor.getText();
-                    double preco = Double.parseDouble(campoPreco.getText());
-                    int paginas = Integer.parseInt(campoPaginas.getText());
-                    String genero = campoGenero.getText();
+                    String nome = campoNome.getText().trim();
+                    String autor = campoAutor.getText().trim();
+                    double preco = Double.parseDouble(campoPreco.getText().trim());
+                    int paginas = Integer.parseInt(campoPaginas.getText().trim());
+                    String genero = campoGenero.getText().trim();
+
+                    // VALIDAÇÃO DE PREÇO NEGATIVO
+                    if (preco < 0) {
+                        JOptionPane.showMessageDialog(frameCadastro, "O preço não pode ser negativo!");
+                        return;
+                    }
+
+                    // VALIDAÇÃO DE PÁGINAS
+                    if (paginas <= 0) {
+                        JOptionPane.showMessageDialog(frameCadastro, "O número de páginas deve ser maior que zero!");
+                        return;
+                    }
 
                     livros.add(new Livro(nome, autor, preco, paginas, genero));
-                    JOptionPane.showMessageDialog(null, "Livro '" + nome + "' cadastrado!");
+                    JOptionPane.showMessageDialog(frameCadastro, "Livro '" + nome + "' cadastrado!");
                     TelaAdmin.renderizarTabela(livros, leitores, modeloTabela, modoAtual);
                     frameCadastro.dispose();
-                } catch (Exception erro) {
-                    JOptionPane.showMessageDialog(null, "Preço e Páginas devem ser números!");
+
+                } catch (NumberFormatException erro) {
+                    JOptionPane.showMessageDialog(frameCadastro, "Preço e Páginas devem ser números!");
                 }
             });
         }
@@ -88,23 +103,34 @@ public class TelaCadastrar {
             frameCadastro.setVisible(true);
 
             botaoCadastrar.addActionListener(e -> {
-                if (campoNome.getText().isEmpty() || campoTelefone.getText().isEmpty()
-                        || new String(campoSenha.getPassword()).isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+                String senha = new String(campoSenha.getPassword());
+
+                // VALIDAÇÃO DE CAMPOS VAZIOS OU SÓ ESPAÇOS
+                if (campoNome.getText().trim().isEmpty() || campoTelefone.getText().trim().isEmpty()
+                        || senha.trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(frameCadastro, "Preencha todos os campos!");
                     return;
                 }
-                try {
-                    String nome = campoNome.getText();
-                    String telefone = campoTelefone.getText();
-                    String senha = new String(campoSenha.getPassword());
 
-                    leitores.add(new Leitor(nome, telefone, senha));
-                    JOptionPane.showMessageDialog(null, "Leitor '" + nome + "' cadastrado!");
-                    TelaAdmin.renderizarTabela(livros, leitores, modeloTabela, modoAtual);
-                    frameCadastro.dispose();
-                } catch (Exception erro) {
-                    JOptionPane.showMessageDialog(null, "Dados inseridos de forma incorreta!");
+                // VALIDAÇÃO DE TELEFONE
+                if (campoTelefone.getText().trim().length() < 10) {
+                    JOptionPane.showMessageDialog(frameCadastro, "Telefone inválido! Digite pelo menos 10 caracteres. Ex: (14)99999-9999");
+                    return;
                 }
+
+                // VALIDAÇÃO DE SENHA
+                if (senha.length() < 4) {
+                    JOptionPane.showMessageDialog(frameCadastro, "A senha deve ter pelo menos 4 caracteres!");
+                    return;
+                }
+
+                String nome = campoNome.getText().trim();
+                String telefone = campoTelefone.getText().trim();
+
+                leitores.add(new Leitor(nome, telefone, senha));
+                JOptionPane.showMessageDialog(frameCadastro, "Leitor '" + nome + "' cadastrado!");
+                TelaAdmin.renderizarTabela(livros, leitores, modeloTabela, modoAtual);
+                frameCadastro.dispose();
             });
         }
     }
