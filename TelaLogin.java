@@ -45,8 +45,8 @@ public class TelaLogin {
                 }
 
                 if (leitorLogado != null) {
-                    new TelaLeitor(livros, leitorLogado, modoAtual);
-                    System.out.println("entrou como o leitor "+leitorLogado.nome);
+                    new TelaLeitor(livros, leitores, leitorLogado, modoAtual);
+                    frameLogin.dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "Nome ou senha incorretos!");
                 }
