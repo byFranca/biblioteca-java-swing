@@ -15,7 +15,8 @@ public class TelaEditar {
             }
 
             int confirmacao = JOptionPane.showConfirmDialog(null, "Deseja editar os dados dessa linha?");
-            if (confirmacao != JOptionPane.YES_OPTION) return;
+            if (confirmacao != JOptionPane.YES_OPTION)
+                return;
 
             JFrame frameEditar = new JFrame();
             frameEditar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -44,11 +45,16 @@ public class TelaEditar {
             campoPaginas.setText(String.valueOf(livroAtual.getNumeroPaginas()));
             campoGenero.setText(livroAtual.getGenero());
 
-            painel.add(labelNome); painel.add(campoNome);
-            painel.add(labelAutor); painel.add(campoAutor);
-            painel.add(labelPreco); painel.add(campoPreco);
-            painel.add(labelPaginas); painel.add(campoPaginas);
-            painel.add(labelGenero); painel.add(campoGenero);
+            painel.add(labelNome);
+            painel.add(campoNome);
+            painel.add(labelAutor);
+            painel.add(campoAutor);
+            painel.add(labelPreco);
+            painel.add(campoPreco);
+            painel.add(labelPaginas);
+            painel.add(campoPaginas);
+            painel.add(labelGenero);
+            painel.add(campoGenero);
 
             frameEditar.add(painel);
             frameEditar.add(botaoEditar, BorderLayout.SOUTH);
@@ -104,7 +110,8 @@ public class TelaEditar {
             }
 
             int confirmacao = JOptionPane.showConfirmDialog(null, "Deseja editar os dados dessa linha?");
-            if (confirmacao != JOptionPane.YES_OPTION) return;
+            if (confirmacao != JOptionPane.YES_OPTION)
+                return;
 
             JFrame frameEditar = new JFrame();
             frameEditar.setTitle("Editar Leitor");
@@ -127,9 +134,12 @@ public class TelaEditar {
             campoTelefone.setText(leitorAtual.getTelefone());
             campoSenha.setText(leitorAtual.getSenha());
 
-            painelEditar.add(labelNome); painelEditar.add(campoNome);
-            painelEditar.add(labelTelefone); painelEditar.add(campoTelefone);
-            painelEditar.add(labelSenha); painelEditar.add(campoSenha);
+            painelEditar.add(labelNome);
+            painelEditar.add(campoNome);
+            painelEditar.add(labelTelefone);
+            painelEditar.add(campoTelefone);
+            painelEditar.add(labelSenha);
+            painelEditar.add(campoSenha);
 
             frameEditar.add(painelEditar);
             frameEditar.add(botaoEditar, BorderLayout.SOUTH);
@@ -147,7 +157,8 @@ public class TelaEditar {
 
                 // VALIDAÇÃO DE TELEFONE
                 if (campoTelefone.getText().trim().length() < 10) {
-                    JOptionPane.showMessageDialog(frameEditar, "Telefone inválido! Digite pelo menos 10 caracteres. Ex: (14)99999-9999");
+                    JOptionPane.showMessageDialog(frameEditar,
+                            "Telefone inválido! Digite pelo menos 10 caracteres. Ex: (14)99999-9999");
                     return;
                 }
 

@@ -14,18 +14,46 @@ public class Livro {
     }
 
     // GETTERS
-    public String getNome() { return nome; }
-    public String getNomeAutor() { return nomeAutor; }
-    public double getPreco() { return preco; }
-    public int getNumeroPaginas() { return numeroPaginas; }
-    public String getGenero() { return genero; }
+    public String getNome() {
+        return nome;
+    }
+
+    public String getNomeAutor() {
+        return nomeAutor;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public int getNumeroPaginas() {
+        return numeroPaginas;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
 
     // SETTERS
-    public void setNome(String nome) { this.nome = nome; }
-    public void setNomeAutor(String nomeAutor) { this.nomeAutor = nomeAutor; }
-    public void setPreco(double preco) { this.preco = preco; }
-    public void setNumeroPaginas(int numeroPaginas) { this.numeroPaginas = numeroPaginas; }
-    public void setGenero(String genero) { this.genero = genero; }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setNomeAutor(String nomeAutor) {
+        this.nomeAutor = nomeAutor;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+    public void setNumeroPaginas(int numeroPaginas) {
+        this.numeroPaginas = numeroPaginas;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
 
     public void exibir() {
         System.out.println(nome + " | " + nomeAutor + " | " + genero);

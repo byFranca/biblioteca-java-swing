@@ -14,10 +14,10 @@ public class TelaLeitor {
         frameLeitor.setTitle("Menu Leitor — " + leitorLogado.getNome());
 
         DefaultTableModel modeloTabela = new DefaultTableModel();
-        modeloTabela.setColumnIdentifiers(new String[]{"id", "Nome", "Autor", "Gênero"});
+        modeloTabela.setColumnIdentifiers(new String[] { "id", "Nome", "Autor", "Gênero" });
         for (int i = 0; i < livros.size(); i++) {
             Livro l = livros.get(i);
-            modeloTabela.addRow(new Object[]{(i + 1), l.getNome(), l.getNomeAutor(), l.getGenero()});
+            modeloTabela.addRow(new Object[] { (i + 1), l.getNome(), l.getNomeAutor(), l.getGenero() });
         }
 
         JTable tabela = new JTable(modeloTabela);
@@ -61,10 +61,10 @@ public class TelaLeitor {
             }
 
             DefaultTableModel modeloFavoritos = new DefaultTableModel();
-            modeloFavoritos.setColumnIdentifiers(new String[]{"id", "Nome", "Autor", "Gênero"});
+            modeloFavoritos.setColumnIdentifiers(new String[] { "id", "Nome", "Autor", "Gênero" });
             for (int i = 0; i < leitorLogado.livrosFavoritos.size(); i++) {
                 Livro l = leitorLogado.livrosFavoritos.get(i);
-                modeloFavoritos.addRow(new Object[]{(i + 1), l.getNome(), l.getNomeAutor(), l.getGenero()});
+                modeloFavoritos.addRow(new Object[] { (i + 1), l.getNome(), l.getNomeAutor(), l.getGenero() });
             }
 
             JTable tabelaFavoritos = new JTable(modeloFavoritos);
@@ -93,7 +93,8 @@ public class TelaLeitor {
             }
 
             leitorLogado.livrosFavoritos.add(livroSelecionado);
-            JOptionPane.showMessageDialog(frameLeitor, "'" + livroSelecionado.getNome() + "' adicionado aos favoritos!");
+            JOptionPane.showMessageDialog(frameLeitor,
+                    "'" + livroSelecionado.getNome() + "' adicionado aos favoritos!");
         });
 
         // REMOVER DOS FAVORITOS
@@ -104,10 +105,10 @@ public class TelaLeitor {
             }
 
             DefaultTableModel modeloRemover = new DefaultTableModel();
-            modeloRemover.setColumnIdentifiers(new String[]{"id", "Nome", "Autor"});
+            modeloRemover.setColumnIdentifiers(new String[] { "id", "Nome", "Autor" });
             for (int i = 0; i < leitorLogado.livrosFavoritos.size(); i++) {
                 Livro l = leitorLogado.livrosFavoritos.get(i);
-                modeloRemover.addRow(new Object[]{(i + 1), l.getNome(), l.getNomeAutor()});
+                modeloRemover.addRow(new Object[] { (i + 1), l.getNome(), l.getNomeAutor() });
             }
 
             JTable tabelaRemover = new JTable(modeloRemover);
@@ -126,7 +127,8 @@ public class TelaLeitor {
                 }
                 Livro livroRemovido = leitorLogado.livrosFavoritos.get(linhaSelecionada);
                 leitorLogado.livrosFavoritos.remove(linhaSelecionada);
-                JOptionPane.showMessageDialog(dialogRemover, "'" + livroRemovido.getNome() + "' removido dos favoritos!");
+                JOptionPane.showMessageDialog(dialogRemover,
+                        "'" + livroRemovido.getNome() + "' removido dos favoritos!");
                 dialogRemover.dispose();
             });
 

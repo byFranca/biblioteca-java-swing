@@ -78,20 +78,20 @@ public class TelaAdmin {
         modeloTabela.setRowCount(0);
 
         if (modoAtual[0].equals("Livro")) {
-            modeloTabela.setColumnIdentifiers(new String[]{"id", "Nome", "Autor", "Genero", "Preço"});
+            modeloTabela.setColumnIdentifiers(new String[] { "id", "Nome", "Autor", "Genero", "Preço" });
             for (int i = 0; i < livros.size(); i++) {
                 Livro l = livros.get(i);
-                modeloTabela.addRow(new Object[]{
-                    (i + 1), l.getNome(), l.getNomeAutor(), l.getGenero(), "R$" + l.getPreco()
+                modeloTabela.addRow(new Object[] {
+                        (i + 1), l.getNome(), l.getNomeAutor(), l.getGenero(), "R$" + l.getPreco()
                 });
             }
         }
 
         if (modoAtual[0].equals("Leitor")) {
-            modeloTabela.setColumnIdentifiers(new String[]{"id", "Nome", "Telefone"});
+            modeloTabela.setColumnIdentifiers(new String[] { "id", "Nome", "Telefone" });
             for (int i = 0; i < leitores.size(); i++) {
                 Leitor l = leitores.get(i);
-                modeloTabela.addRow(new Object[]{(i + 1), l.getNome(), l.getTelefone()});
+                modeloTabela.addRow(new Object[] { (i + 1), l.getNome(), l.getTelefone() });
             }
         }
     }
@@ -106,8 +106,10 @@ public class TelaAdmin {
 
         int confirmacao = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir essa linha?");
         if (confirmacao == JOptionPane.YES_OPTION) {
-            if (modoAtual[0].equals("Livro")) livros.remove(linha);
-            if (modoAtual[0].equals("Leitor")) leitores.remove(linha);
+            if (modoAtual[0].equals("Livro"))
+                livros.remove(linha);
+            if (modoAtual[0].equals("Leitor"))
+                leitores.remove(linha);
             renderizarTabela(livros, leitores, modeloTabela, modoAtual);
         }
     }

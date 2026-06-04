@@ -28,11 +28,16 @@ public class TelaCadastrar {
             JTextField campoGenero = new JTextField();
             JButton botaoCadastrar = new JButton("Cadastrar");
 
-            painel.add(labelNome); painel.add(campoNome);
-            painel.add(labelAutor); painel.add(campoAutor);
-            painel.add(labelPreco); painel.add(campoPreco);
-            painel.add(labelPaginas); painel.add(campoPaginas);
-            painel.add(labelGenero); painel.add(campoGenero);
+            painel.add(labelNome);
+            painel.add(campoNome);
+            painel.add(labelAutor);
+            painel.add(campoAutor);
+            painel.add(labelPreco);
+            painel.add(campoPreco);
+            painel.add(labelPaginas);
+            painel.add(campoPaginas);
+            painel.add(labelGenero);
+            painel.add(campoGenero);
 
             frameCadastro.add(painel);
             frameCadastro.add(botaoCadastrar, BorderLayout.SOUTH);
@@ -94,9 +99,12 @@ public class TelaCadastrar {
             JPasswordField campoSenha = new JPasswordField(20);
             JButton botaoCadastrar = new JButton("Cadastrar Leitor");
 
-            painelCadastro.add(labelNome); painelCadastro.add(campoNome);
-            painelCadastro.add(labelTelefone); painelCadastro.add(campoTelefone);
-            painelCadastro.add(labelSenha); painelCadastro.add(campoSenha);
+            painelCadastro.add(labelNome);
+            painelCadastro.add(campoNome);
+            painelCadastro.add(labelTelefone);
+            painelCadastro.add(campoTelefone);
+            painelCadastro.add(labelSenha);
+            painelCadastro.add(campoSenha);
 
             frameCadastro.add(painelCadastro);
             frameCadastro.add(botaoCadastrar, BorderLayout.SOUTH);
@@ -114,7 +122,8 @@ public class TelaCadastrar {
 
                 // VALIDAÇÃO DE TELEFONE
                 if (campoTelefone.getText().trim().length() < 10) {
-                    JOptionPane.showMessageDialog(frameCadastro, "Telefone inválido! Digite pelo menos 10 caracteres. Ex: (14)99999-9999");
+                    JOptionPane.showMessageDialog(frameCadastro,
+                            "Telefone inválido! Digite pelo menos 10 caracteres. Ex: (14)99999-9999");
                     return;
                 }
 

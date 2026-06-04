@@ -1,7 +1,5 @@
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -10,7 +8,7 @@ public class TelaLogin {
         modoAtual[0] = "Livro";
 
         JFrame frameLogin = new JFrame();
-        frameLogin.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        frameLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameLogin.setTitle("Tela De Login");
         frameLogin.setSize(400, 150);
         frameLogin.setLocationRelativeTo(null);
@@ -31,27 +29,11 @@ public class TelaLogin {
         frameLogin.add(botaoEntrar, BorderLayout.SOUTH);
         frameLogin.setVisible(true);
 
-        // CONFIRMAÇÃO AO FECHAR
-        frameLogin.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                int confirmacao = JOptionPane.showConfirmDialog(
-                    frameLogin,
-                    "Tem certeza que deseja sair do sistema?",
-                    "Confirmar saída",
-                    JOptionPane.YES_NO_OPTION
-                );
-                if (confirmacao == JOptionPane.YES_OPTION) {
-                    System.exit(0);
-                }
-            }
-        });
-
         botaoEntrar.addActionListener(e -> {
             String nome = campoNome.getText();
             String senha = new String(campoSenha.getPassword());
 
-            if (nome.equals("admin") && senha.equals("1234")) {
+            if (nome.trim().equals("admin") && senha.equals("1234")) {
                 new TelaAdmin(livros, leitores, modoAtual);
                 frameLogin.dispose();
             } else {

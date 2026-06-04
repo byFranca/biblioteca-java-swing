@@ -13,14 +13,30 @@ public class Leitor {
     }
 
     // GETTERS
-    public String getNome() { return nome; }
-    public String getTelefone() { return telefone; }
-    public String getSenha() { return senha; }
+    public String getNome() {
+        return nome;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
 
     // SETTERS
-    public void setNome(String nome) { this.nome = nome; }
-    public void setTelefone(String telefone) { this.telefone = telefone; }
-    public void setSenha(String senha) { this.senha = senha; }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
     public void exibir() {
         System.out.println(nome + " | " + telefone);
