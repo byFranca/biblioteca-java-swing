@@ -33,24 +33,28 @@ public class TelaLogin {
             String nome = campoNome.getText();
             String senha = new String(campoSenha.getPassword());
 
-            if (nome.trim().equals("admin") && senha.equals("1234")) {
-                new TelaAdmin(livros, leitores, modoAtual);
-                frameLogin.dispose();
-            } else {
-                Leitor leitorLogado = null;
-                for (int i = 0; i < leitores.size(); i++) {
-                    if (leitores.get(i).getNome().equals(nome) && leitores.get(i).getSenha().equals(senha)) {
-                        leitorLogado = leitores.get(i);
-                        break;
-                    }
-                }
-
-                if (leitorLogado != null) {
-                    new TelaLeitor(livros, leitores, leitorLogado, modoAtual);
+            if(!nome.trim().isEmpty() && !senha.trim().isEmpty()){
+                if (nome.trim().equals("admin") && senha.equals("1234")) {
+                    new TelaAdmin(livros, leitores, modoAtual);
                     frameLogin.dispose();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Nome ou senha incorretos!");
+                    Leitor leitorLogado = null;
+                    for (int i = 0; i < leitores.size(); i++) {
+                        if (leitores.get(i).getNome().equals(nome) && leitores.get(i).getSenha().equals(senha)) {
+                            leitorLogado = leitores.get(i);
+                            break;
+                        }
+                    }
+
+                    if (leitorLogado != null) {
+                        new TelaLeitor(livros, leitores, leitorLogado, modoAtual);
+                        frameLogin.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Nome ou senha incorretos!");
+                    }
                 }
+            }else{
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos!!");
             }
         });
     }
