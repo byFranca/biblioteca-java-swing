@@ -1,6 +1,6 @@
 # grupo-B1-SCRIPTS
 
-Projeto desenvolvido para a disciplina de **Desenvolvimento de Sistemas** — 2° DS.
+Projeto desenvolvido para a disciplina de **Programas Web** — 2° DS.
 
 ## Objetivo
 
@@ -16,10 +16,13 @@ O projeto abrange três camadas principais: o **Cliente/Navegador**, responsáve
 ``bash
 git clone https://github.com/seu-usuario/grupo-B1-SCRIPTS.git
 cd grupo-B1-SCRIPTS
+
 2. Coloque os arquivos na pasta do servidor local:
 XAMPP: C:\xampp\htdocs\grupo-B1-SCRIPTS
 WAMP: C:\wamp64\www\grupo-B1-SCRIPTS
+
 3. Inicie o Apache pelo painel de controle.
+
 4. Acesse no navegador:
 plain
 http://localhost/grupo-B1-SCRIPTS
@@ -29,14 +32,17 @@ Etapas de desenvolvimento
 [ ] Lógica server-side com PHP
 [ ] Integração entre camadas Cliente/Servidor
 O projeto foi estruturado de forma intencional para explorar cada camada da arquitetura Web:
+
 1. Cliente (Navegador)
 Camada responsável pela apresentação e interação com o usuário. Envolve:
 Estruturação das páginas com HTML
 Estilização visual com CSS
 Interatividade e validações no navegador com JavaScript
+
 2. Servidor Web
 Camada intermediária que recebe as requisições do cliente e as encaminha para a aplicação. Utiliza:
 Apache ou Nginx como servidor HTTP
+
 3. Aplicação (PHP)
 Camada de processamento e lógica do servidor. Responsável por:
 Geração dinâmica de conteúdo HTML
@@ -44,7 +50,9 @@ Processamento de dados enviados pelo cliente
 Comunicação com banco de dados (se aplicável)
 Validações e segurança no lado servidor
 Estrutura do projeto
+
 plain
+
 grupo-B1-SCRIPTS/
 ├── assets/           # CSS, JavaScript e imagens
 │   ├── css/
@@ -56,6 +64,7 @@ grupo-B1-SCRIPTS/
 ├── index.php        # Página inicial
 ├── .htaccess        # Configurações do Apache
 └── README.md
+
 Autores
 Table
 https://github.com/apoteosii	https://github.com/membro2	https://github.com/membro3
